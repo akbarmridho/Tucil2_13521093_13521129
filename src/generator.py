@@ -3,7 +3,7 @@ import numpy as np
 
 
 def generate_points(dimensions: int, number_of_points: int, range: int = 1000) -> NDArray:
-    return np.asarray((np.random.rand(number_of_points, dimensions) - 0.5)*range*2, dtype=int)
+    return np.asarray((np.random.rand(number_of_points, dimensions) - 0.5)*range*2, dtype=int).astype(np.float64)
 
 
 def printPoint(point: NDArray):
