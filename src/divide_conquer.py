@@ -4,7 +4,8 @@ from typing import Tuple
 
 
 def get_closest_pair(points: NDArray, depth: int = 0) -> Tuple[NDArray, NDArray, float]:
-    quicksort(points, depth, 0, len(points) - 1)
+    # quicksort(points, depth, 0, len(points) - 1)
+    points = points[points[:, depth].argsort()]
     
     if len(points) <= 3:
         current_dist: float = float('inf')
@@ -44,7 +45,7 @@ def get_closest_pair(points: NDArray, depth: int = 0) -> Tuple[NDArray, NDArray,
 
     # conquer
     points_pm_delta = points[[
-        abs(point[depth] - median[depth]) <= delta for point in points]]  # TODO: ini keknya bisa hasilnya cuman 1
+        abs(point[depth] - median[depth]) <= delta for point in points]]
 
     if points_pm_delta.__len__() <= 1:
         return (point1, point2, delta)
@@ -52,8 +53,8 @@ def get_closest_pair(points: NDArray, depth: int = 0) -> Tuple[NDArray, NDArray,
     remaining_dimension = len(points[0]) - depth - 1
 
     if remaining_dimension == 2:
-        points_pm_delta = points_pm_delta[points_pm_delta[:,
-                                                          depth+1].argsort()]
+        # quicksort(points_pm_delta, depth + 1, 0, len(points_pm_delta) - 1)
+        points_pm_delta = points_pm_delta[points_pm_delta[:, depth+1].argsort()]
         current_min = delta
         current_point1 = point1
         current_point2 = point2
