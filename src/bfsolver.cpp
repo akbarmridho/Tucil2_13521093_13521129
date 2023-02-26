@@ -1,7 +1,10 @@
 #include "bfsolver.h"
 #include "euclidean.h"
 
-closest_pair_t closest_pair_brute_force(points_t &points)
+int bf_counter = 0;
+int dnc_counter = 0;
+
+closest_pair_t closest_pair_brute_force(points_t &points, bool from_dnc)
 {
     int n = points.size();
 
@@ -14,6 +17,15 @@ closest_pair_t closest_pair_brute_force(points_t &points)
         for (int j = i + 1; j < n; j++)
         {
             double distance = calculate_euclidean_distance(points[i], points[j]);
+
+            if (from_dnc)
+            {
+                dnc_counter++;
+            }
+            else
+            {
+                bf_counter++;
+            }
 
             if (distance < min)
             {

@@ -18,6 +18,7 @@ closest_pair_t base_case(points_t &points)
         for (int j = i + 1; j < points.size(); j++)
         {
             dist = calculate_euclidean_distance(points[i], points[j]);
+            dnc_counter++;
             point1 = points[i];
             point2 = points[j];
 
@@ -50,6 +51,7 @@ closest_pair_t base_dims(points_t &points)
         for (int j = j_start; j < i; j++)
         {
             double distance = calculate_euclidean_distance(points[i], points[j]);
+            dnc_counter++;
 
             if (distance < current_min)
             {
@@ -72,7 +74,7 @@ closest_pair_t closest_pair_divide_conquer(points_t &points, int depth)
 
     if (points[0].size() - depth == 1)
     {
-        return closest_pair_brute_force(points);
+        return closest_pair_brute_force(points, true);
     }
 
     quicksort(points, depth);
@@ -107,7 +109,7 @@ closest_pair_t closest_pair_divide_conquer(points_t &points, int depth)
 
     points_t points_s12;
 
-    for (auto & point : points)
+    for (auto &point : points)
     {
         if (std::abs(point[depth] - median_point[depth]) < delta)
         {
@@ -126,18 +128,20 @@ closest_pair_t closest_pair_divide_conquer(points_t &points, int depth)
 
     if (points[0].size() - depth - 1 == 2)
     {
-        if (points_s12.size() <= 6) {
-            auto [a, b, c] = closest_pair_brute_force(points_s12);
+        if (points_s12.size() <= 6)
+        {
+            auto [a, b, c] = closest_pair_brute_force(points_s12, true);
             s12_point1 = a;
             s12_point2 = b;
             s12_dist = c;
-        } else {
+        }
+        else
+        {
             auto [a, b, c] = base_dims(points_s12);
             s12_point1 = a;
             s12_point2 = b;
             s12_dist = c;
         }
-
     }
     else
     {

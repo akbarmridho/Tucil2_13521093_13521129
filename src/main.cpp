@@ -1,10 +1,10 @@
-// #include <matplot/matplot.h>
 #include <iostream>
 #include <chrono>
 #include "datatypes.h"
 #include "bfsolver.h"
 #include "dncsolver.h"
 #include "generator.h"
+#include "visualizer.h"
 
 using std::cin;
 using std::cout;
@@ -16,14 +16,14 @@ using std::chrono::high_resolution_clock;
 int main()
 {
      points_t points_dnc, points_bf;
-     int dimensions, num_of_points, range;
+     int dimensions, num_of_points;
 
      std::cout << "Dimensions: ";
      std::cin >> dimensions;
      std::cout << "Number of points: ";
      std::cin >> num_of_points;
-     std::cout << "Range: ";
-     std::cin >> range;
+
+     int range = 1e4;
 
      points_t points1 = generate_points(dimensions, num_of_points, range);
      points_t points2 = points1;
@@ -37,6 +37,9 @@ int main()
 
      duration<double> dnc_duration = duration_cast<duration<double>>(stop_dnc - start_dnc);
      cout << dnc_duration.count() << " seconds elapsed" << endl;
+     cout << dnc_counter << " euclediean comparisons" << endl;
+
+     bf_counter = 0;
 
      cout << endl
           << "Brute Force" << endl;
@@ -47,6 +50,13 @@ int main()
 
      duration<double> bf_duration = duration_cast<duration<double>>(stop_bf - start_bf);
      cout << bf_duration.count() << " seconds elapsed" << endl;
+     cout << bf_counter << " euclediean comparisons" << endl;
+
+     if (dimensions == 3)
+     {
+          auto [p1, p2, dist] = dnc_result;
+          visualize(points1, p1, p2);
+     }
 
      return 0;
 }

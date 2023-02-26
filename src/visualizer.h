@@ -1,14 +1,5 @@
-//
-// Created by akbar on 26/02/2023.
-//
+#include <matplot/matplot.h>
+#include <vector>
+#include "datatypes.h"
 
-#ifndef TUCIL2_13521093_13521129_VISUALIZER_H
-#define TUCIL2_13521093_13521129_VISUALIZER_H
-
-
-class visualizer {
-
-};
-
-
-#endif //TUCIL2_13521093_13521129_VISUALIZER_H
+void visualize(points_t &points, point_t &p1, point_t &p2);
