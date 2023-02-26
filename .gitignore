@@ -1,7 +1,7 @@
 # Prerequisites
 __pycache__
 *.d
-
+build
 # Compiled Object files
 *.slo
 *.lo
@@ -33,3 +33,5 @@ __pycache__
 *.app
 
 .idea
+
+cmake-build-debug
