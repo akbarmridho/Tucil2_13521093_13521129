@@ -43,7 +43,7 @@ int main()
      auto start_bf = high_resolution_clock::now();
      auto bf_result = closest_pair_brute_force(points2);
      auto stop_bf = high_resolution_clock::now();
-     print_result(dnc_result);
+     print_result(bf_result);
 
      duration<double> bf_duration = duration_cast<duration<double>>(stop_bf - start_bf);
      cout << bf_duration.count() << " seconds elapsed" << endl;

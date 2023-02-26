@@ -107,15 +107,15 @@ closest_pair_t closest_pair_divide_conquer(points_t &points, int depth)
 
     points_t points_s12;
 
-    for (auto point = points.begin(); point != points.end(); point++)
+    for (auto & point : points)
     {
-        if (abs((*point)[depth] - median_point[depth]) < delta)
+        if (std::abs(point[depth] - median_point[depth]) < delta)
         {
-            points_s12.push_back(*point);
+            points_s12.push_back(point);
         }
     }
 
-    if (points_s12.size() <= 6)
+    if (points_s12.size() <= 2)
     {
         return closest_pair_t{point1, point2, delta};
     }
@@ -126,10 +126,18 @@ closest_pair_t closest_pair_divide_conquer(points_t &points, int depth)
 
     if (points[0].size() - depth - 1 == 2)
     {
-        auto [a, b, c] = base_dims(points_s12);
-        s12_point1 = a;
-        s12_point2 = b;
-        s12_dist = c;
+        if (points_s12.size() <= 6) {
+            auto [a, b, c] = closest_pair_brute_force(points_s12);
+            s12_point1 = a;
+            s12_point2 = b;
+            s12_dist = c;
+        } else {
+            auto [a, b, c] = base_dims(points_s12);
+            s12_point1 = a;
+            s12_point2 = b;
+            s12_dist = c;
+        }
+
     }
     else
     {
