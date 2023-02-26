@@ -20,10 +20,11 @@ if __name__ == "__main__":
 
     print("\nBrute Force")
     t3 = time.time()
-    _, _, result2 = brute_force(points.copy())
+    p1, p2, result2 = brute_force(points.copy())
     # result2 = brute_force_numba(points.copy())
     t4 = time.time()
-
+    printPoint(p1)
+    printPoint(p2)
     print(f"Closest distance {result2} calculated in {t4-t3:.4f} seconds")
 
     if dimensions == 3 and input(

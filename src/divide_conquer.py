@@ -4,8 +4,8 @@ from typing import Tuple
 
 
 def get_closest_pair(points: NDArray, depth: int = 0) -> Tuple[NDArray, NDArray, float]:
-    points = points[points[:, depth].argsort()]
-
+    quicksort(points, depth, 0, len(points) - 1)
+    
     if len(points) <= 3:
         current_dist: float = float('inf')
         point1 = points[0]
@@ -77,3 +77,27 @@ def get_closest_pair(points: NDArray, depth: int = 0) -> Tuple[NDArray, NDArray,
         return (pm_point1, pm_point2, pm_min)
     else:
         return (point1, point2, delta)
+
+def quicksort(points: NDArray, depth: int, low: int, high: int):
+    # partition
+    pivot_depth_val = points[(low + high) // 2, depth] # pivot dengan elemen tengah
+    left_ptr = low
+    right_ptr = high
+    
+    while (left_ptr <= right_ptr):
+        while (points[left_ptr, depth] < pivot_depth_val):
+            left_ptr += 1
+        while (points[right_ptr, depth] > pivot_depth_val):
+            right_ptr -= 1
+        if (left_ptr <= right_ptr):
+            temp = points[left_ptr].copy()
+            points[left_ptr] = points[right_ptr].copy()
+            points[right_ptr] = temp.copy()
+            left_ptr += 1
+            right_ptr -= 1
+    
+    # recursion
+    if (low < left_ptr - 1):
+        quicksort(points, depth, low, left_ptr - 1)
+    if (left_ptr < high):
+        quicksort(points, depth, left_ptr, high)
