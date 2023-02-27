@@ -21,6 +21,12 @@ bool run(int dimension, int n, bool debug = false)
      points_t points1 = generate_points(dimension, n, range);
      points_t points2 = points1;
 
+     if (debug)
+     {
+          cout << endl
+               << "Dims " << dimension << " num of points " << n << endl;
+     }
+
      cout << endl
           << "Divide And Conquer" << endl;
      auto start_dnc = high_resolution_clock::now();
@@ -60,7 +66,7 @@ bool run(int dimension, int n, bool debug = false)
 int main()
 {
      // DEBUG PURPOSES
-     bool DEBUG = true;
+     bool DEBUG = false;
 
      if (DEBUG)
      {

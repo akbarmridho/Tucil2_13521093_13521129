@@ -19,7 +19,7 @@ closest_pair_t closest_pair_divide_conquer(points_t &points, int depth)
     int median_idx = points.size() / 2;
 
     auto points_s1 = points_t(points.begin(), points.begin() + median_idx);
-    auto points_s2 = points_t(points.begin() + median_idx, points.end());
+    auto points_s2 = points_t(points.begin() + median_idx + 1, points.end());
 
     // divide step
     auto [s1_pairs_list, s1_dist] = closest_pair_divide_conquer(points_s1, depth);
@@ -41,8 +41,8 @@ closest_pair_t closest_pair_divide_conquer(points_t &points, int depth)
     else
     {
         delta = s1_dist;
-        pairs_list.insert(pairs_list.end(), s1_pairs_list.begin(), s1_pairs_list.end());
-        pairs_list.insert(pairs_list.end(), s2_pairs_list.begin(), s2_pairs_list.end());
+        pairs_list = s1_pairs_list;
+        combine_pairs(pairs_list, s2_pairs_list);
     }
 
     point_t median_point = points[median_idx];
@@ -67,7 +67,7 @@ closest_pair_t closest_pair_divide_conquer(points_t &points, int depth)
 
     if (s12_dist == delta)
     {
-        pairs_list.insert(pairs_list.end(), s12_pairs_list.begin(), s12_pairs_list.end());
+        combine_pairs(pairs_list, s12_pairs_list);
         return closest_pair_t{pairs_list, delta};
     }
     else if (s12_dist < delta)
