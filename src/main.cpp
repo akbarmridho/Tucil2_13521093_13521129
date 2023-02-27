@@ -1,11 +1,9 @@
 #include <iostream>
 #include <chrono>
-#include <matplot/matplot.h>
 #include "datatypes.h"
 #include "bfsolver.h"
 #include "dncsolver.h"
 #include "generator.h"
-#include "visualizer.h"
 
 using std::cin;
 using std::cout;
@@ -47,14 +45,14 @@ bool run(int dimension, int n, bool debug = false)
      cout << bf_duration.count() << " seconds elapsed" << endl;
      cout << bf_counter << " euclidean distance comparisons" << endl;
 
-     if (dimension == 3 && !debug)
-     {
-          auto [p1, p2, dist] = dnc_result;
-          visualize(points1, p1, p2);
-     }
+     // if (dimension == 3 && !debug)
+     // {
+     //      auto [p1, p2, dist] = dnc_result;
+     //      visualize(points1, p1, p2);
+     // }
 
-     auto [a1, a2, dncdist] = dnc_result;
-     auto [b1, b2, bfdist] = bf_result;
+     auto [dncres, dncdist] = dnc_result;
+     auto [bfres, bfdist] = bf_result;
 
      return dncdist == bfdist;
 }
@@ -62,7 +60,7 @@ bool run(int dimension, int n, bool debug = false)
 int main()
 {
      // DEBUG PURPOSES
-     bool DEBUG = false;
+     bool DEBUG = true;
 
      if (DEBUG)
      {

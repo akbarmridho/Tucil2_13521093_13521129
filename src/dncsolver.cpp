@@ -5,45 +5,11 @@
 #include "bfsolver.h"
 #include <cmath>
 
-closest_pair_t base_case(points_t &points)
-{
-    // Prekondisi: minimal ada dua titik di points
-    double current_min, dist;
-    pairs_t pairs_list;
-
-    current_min = 1 << 20;
-
-    for (int i = 0; i < points.size(); i++)
-    {
-        for (int j = i + 1; j < points.size(); j++)
-        {
-            dist = calculate_euclidean_distance(points[i], points[j]);
-            dnc_counter++;
-
-            if (dist == current_min)
-            {
-                pairs_list.push_back(points_pair(points[i], points[j]));
-            }
-            else if (dist < current_min)
-            {
-                current_min = dist;
-                pairs_list.clear();
-                pairs_list.push_back(points_pair(points[i], points[j]));
-            }
-        }
-    }
-
-    return closest_pair_t{pairs_list, current_min};
-}
-
 closest_pair_t closest_pair_divide_conquer(points_t &points, int depth)
 {
-    if (points.size() <= 3)
-    {
-        return base_case(points);
-    }
+    bool lastDims = points[0].size() - 1 == depth;
 
-    if (points[0].size() - depth == 1)
+    if (points.size() <= 3 || lastDims)
     {
         return closest_pair_brute_force(points, true);
     }
@@ -53,7 +19,7 @@ closest_pair_t closest_pair_divide_conquer(points_t &points, int depth)
     int median_idx = points.size() / 2;
 
     auto points_s1 = points_t(points.begin(), points.begin() + median_idx);
-    auto points_s2 = points_t(points.begin() + median_idx + 1, points.end());
+    auto points_s2 = points_t(points.begin() + median_idx, points.end());
 
     // divide step
     auto [s1_pairs_list, s1_dist] = closest_pair_divide_conquer(points_s1, depth);
@@ -67,7 +33,7 @@ closest_pair_t closest_pair_divide_conquer(points_t &points, int depth)
         delta = s1_dist;
         pairs_list = s1_pairs_list;
     }
-    else if (s1_dist < s2_dist)
+    else if (s1_dist > s2_dist)
     {
         delta = s2_dist;
         pairs_list = s2_pairs_list;
@@ -97,10 +63,6 @@ closest_pair_t closest_pair_divide_conquer(points_t &points, int depth)
     }
 
     // conquer step
-    double s12_dist;
-    point_t s12_point1, s12_point2;
-    pairs_t s12_pairs_list;
-    
     auto [s12_pairs_list, s12_dist] = closest_pair_divide_conquer(points_s12, depth + 1);
 
     if (s12_dist == delta)

@@ -71,5 +71,6 @@
     "__nullptr": "cpp",
     "__bit_reference": "cpp"
   },
-  "cmake.configureOnOpen": true
+  "cmake.configureOnOpen": true,
+  "cmake.configureArgs": []
 }
