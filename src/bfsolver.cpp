@@ -1,4 +1,6 @@
 #include "bfsolver.h"
+
+#include <utility>
 #include "euclidean.h"
 using namespace std;
 
@@ -24,10 +26,10 @@ bool compare_point(point_t p1, point_t p2)
     return equal;
 }
 
-bool compare_pair(points_pair pair1, points_pair pair2)
+bool compare_pair(point_pair_t pair1, point_pair_t pair2)
 {
-    auto [p11, p12] = pair1;
-    auto [p21, p22] = pair2;
+    auto [p11, p12] = std::move(pair1);
+    auto [p21, p22] = std::move(pair2);
 
     return (compare_point(p11, p21) && compare_point(p12, p22)) ||
            (compare_point(p11, p22) && compare_point(p12, p21));
@@ -44,12 +46,16 @@ void combine_pairs(pairs_t &dest, pairs_t &source)
         {
             auto to_cmp = dest[i];
 
-            if (!compare_pair(src, to_cmp))
+            if (compare_pair(src, to_cmp))
             {
-                dest.push_back(src);
+                match = true;
             }
 
             i++;
+        }
+
+        if (!match) {
+            dest.push_back(src);
         }
     }
 }
@@ -59,10 +65,10 @@ closest_pair_t closest_pair_brute_force(points_t &points, bool from_dnc)
     int n = points.size();
 
     double min = 1 << 25;
-    int point_1_idx;
-    int point_2_idx;
     pairs_t pairs_list;
 
+    // Iterate every point pair and select smallest pair (brute force)
+    // Time complexity O(N^2)
     for (int i = 0; i < n - 1; i++)
     {
         for (int j = i + 1; j < n; j++)
@@ -80,13 +86,13 @@ closest_pair_t closest_pair_brute_force(points_t &points, bool from_dnc)
 
             if (distance == min)
             {
-                pairs_list.push_back(points_pair(points[i], points[j]));
+                pairs_list.emplace_back(points[i], points[j]);
             }
             else if (distance < min)
             {
                 min = distance;
                 pairs_list.clear();
-                pairs_list.push_back(points_pair(points[i], points[j]));
+                pairs_list.emplace_back(points[i], points[j]);
             }
         }
     }

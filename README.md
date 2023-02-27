@@ -8,14 +8,13 @@ Created by Group 77:
 - 13520093 Akbar Maulana Ridho
 - 13520129 Chiquita Ahsanunnisa
 
-## Tech Stack Used
+## Programming Language Used
 - C++
-- Matplot++ Graphics Library
-- CMake
+- Python
 
 ## Features
-- Solver for closest pair of points in k dimensional space
-- Visualization in 3D scatter plot
+- Solver for closest pair of points in k dimensional space (in C++)
+- Visualization in 3D scatter plot (in Python)
 
 ## Structure
 
@@ -60,16 +59,8 @@ This program was developed on WSL2 Ubuntu 22.04.
 - GNU G++ Compiler
 - C++ 17
 - CMake 3.25
-- Matplot++
-- GNUPlot
-
-## How to Install Dependencies
-
-Install GNUPlot
-
-```
-sudo apt install gnuplot
-```
+- Python 3
+- Matplotlib
 
 ### How to Compile and Run Program
 1. Clone this repo
@@ -80,8 +71,6 @@ git clone git@github.com:akbarmridho/Tucil2_13521093_13521129.git
 
 2. Run cmake build
 
-CMakeList.txt will automatically download Matplot++
-
 ```
 cmake -B build .
 ```
@@ -91,3 +80,5 @@ cmake -B build .
 ```
 ./build/Tucil2_13521093_13521129
 ```
+
+To visualize the result, run the python script provided in the project folder

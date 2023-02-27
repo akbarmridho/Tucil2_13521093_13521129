@@ -15,7 +15,7 @@ points_t generate_points(int dimensions, int number_of_points, int range)
 {
     random_device rd;
     mt19937_64 generator(rd());
-    uniform_real_distribution<> distributor(-1 * (range / 2), range / 2);
+    uniform_real_distribution<> distributor(-1 * (range / 2.0), range / 2.0);
 
     points_t points;
 
@@ -43,13 +43,13 @@ void print_point(point_t point)
     cout << ')' << endl;
 }
 
-void print_pair(points_pair p)
+void print_pair(point_pair_t p)
 {
     print_point(get<0>(p));
     print_point(get<1>(p));
 }
 
-void print_result(closest_pair_t closest_pair)
+void print_result(const closest_pair_t& closest_pair)
 {
     auto &[pairs_list, dist] = closest_pair;
 
