@@ -4,6 +4,7 @@
 #include <random>
 
 using std::cout;
+using std::get;
 using std::endl;
 using std::mt19937_64;
 using std::random_device;
@@ -42,15 +43,24 @@ void print_point(point_t point)
     cout << ')' << endl;
 }
 
+void print_pair(points_pair p)
+{
+    print_point(get<0>(p));
+    print_point(get<1>(p));
+}
+
 void print_result(closest_pair_t closest_pair)
 {
-    auto &[point1, point2, dist] = closest_pair;
+    auto &[pairs_list, dist] = closest_pair;
 
     cout << setprecision(8);
 
-    cout << "Closest Pair: " << endl;
-    print_point(point1);
-    print_point(point2);
+    cout << "Closest Pairs: " << endl;
+
+    for (int i = 0; i < pairs_list.size(); i++){
+        cout << "------- " << i + 1 << " -------" << endl;
+        print_pair(pairs_list[i]);
+    }
 
     cout << endl
          << "Closest Distance: " << dist << endl;

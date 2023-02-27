@@ -45,7 +45,7 @@ bool run(int dimension, int n, bool debug = false)
 
      duration<double> bf_duration = duration_cast<duration<double>>(stop_bf - start_bf);
      cout << bf_duration.count() << " seconds elapsed" << endl;
-     cout << bf_counter << " euclediean comparisons" << endl;
+     cout << bf_counter << " euclidean distance comparisons" << endl;
 
      if (dimension == 3 && !debug)
      {
