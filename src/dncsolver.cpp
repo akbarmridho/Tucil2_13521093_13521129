@@ -32,39 +32,6 @@ closest_pair_t base_case(points_t &points)
     return closest_pair_t{point1, point2, current_min};
 }
 
-closest_pair_t base_dims(points_t &points)
-{
-    int depth = points[0].size() - 2;
-
-    quicksort(points, depth);
-    double current_min = 1 << 25;
-
-    int p1_idx;
-    int p2_idx;
-
-    int i_start = 6 < points.size() ? 6 : points.size();
-
-    for (int i = i_start; i < points.size(); i++)
-    {
-        int j_start = 0 > i - 6 ? 0 : i - 6;
-
-        for (int j = j_start; j < i; j++)
-        {
-            double distance = calculate_euclidean_distance(points[i], points[j]);
-            dnc_counter++;
-
-            if (distance < current_min)
-            {
-                p1_idx = i;
-                p2_idx = j;
-                current_min = distance;
-            }
-        }
-    }
-
-    return closest_pair_t{points[p1_idx], points[p2_idx], current_min};
-}
-
 closest_pair_t closest_pair_divide_conquer(points_t &points, int depth)
 {
     if (points.size() <= 3)
@@ -117,7 +84,7 @@ closest_pair_t closest_pair_divide_conquer(points_t &points, int depth)
         }
     }
 
-    if (points_s12.size() <= 2)
+    if (points_s12.size() <= 1)
     {
         return closest_pair_t{point1, point2, delta};
     }
@@ -126,30 +93,10 @@ closest_pair_t closest_pair_divide_conquer(points_t &points, int depth)
     double s12_dist;
     point_t s12_point1, s12_point2;
 
-    if (points[0].size() - depth - 1 == 2)
-    {
-        if (points_s12.size() <= 6)
-        {
-            auto [a, b, c] = closest_pair_brute_force(points_s12, true);
-            s12_point1 = a;
-            s12_point2 = b;
-            s12_dist = c;
-        }
-        else
-        {
-            auto [a, b, c] = base_dims(points_s12);
-            s12_point1 = a;
-            s12_point2 = b;
-            s12_dist = c;
-        }
-    }
-    else
-    {
-        auto [a, b, c] = closest_pair_divide_conquer(points_s12, depth + 1);
-        s12_point1 = a;
-        s12_point2 = b;
-        s12_dist = c;
-    }
+    auto [a, b, c] = closest_pair_divide_conquer(points_s12, depth + 1);
+    s12_point1 = a;
+    s12_point2 = b;
+    s12_dist = c;
 
     if (s12_dist < delta)
     {
