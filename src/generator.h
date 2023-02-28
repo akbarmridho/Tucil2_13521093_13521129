@@ -1,7 +1,9 @@
 #include "datatypes.h"
 
 /**
- * Generate uniform real numbers with mt19937_64 engine
+ * @brief 
+ * 
+ *
  *
  * @param dimensions
  * @param number_of_points

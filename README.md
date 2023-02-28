@@ -45,9 +45,7 @@ Created by Group 77:
     |   main.cpp
     |   sorter.cpp
     |   sorter.h
-    |   visualizer.cpp
-    └── visualizer.h
- 
+    └── visualizer.py
     
 ```
 
@@ -63,7 +61,7 @@ This program was developed on WSL2 Ubuntu 22.04.
 - Matplotlib
 
 ### How to Compile and Run Program
-1. Clone this repo
+1. Clone this repository
 
 ```
 git clone git@github.com:akbarmridho/Tucil2_13521093_13521129.git
@@ -72,7 +70,7 @@ git clone git@github.com:akbarmridho/Tucil2_13521093_13521129.git
 2. Run cmake build
 
 ```
-cmake -B build .
+cmake -B bin .
 ```
 
 3. Run executable file
@@ -81,4 +79,14 @@ cmake -B build .
 ./build/Tucil2_13521093_13521129
 ```
 
-To visualize the result, run the python script provided in the project folder
+### How To Visualize Result in 3D Scatter Plot
+NOTE: Visualization can only be done in three dimensional space. </br>
+1. Go to src directory
+```
+cd src
+```
+
+2. Run the python script provided
+```
+python3 visualizer.py
+```

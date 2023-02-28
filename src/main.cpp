@@ -4,6 +4,7 @@
 #include "bfsolver.h"
 #include "dncsolver.h"
 #include "generator.h"
+#include "io.h"
 
 using std::cin;
 using std::cout;
@@ -19,6 +20,11 @@ bool run(int dimension, int n, bool debug = false)
 
      int range = 1e4;
      points_t points1 = generate_points(dimension, n, range);
+     if (dimension == 3)
+     {
+          write_to_file(points1, "../log/points.txt");
+     }
+
      points_t points2 = points1;
 
      if (debug)
@@ -51,11 +57,11 @@ bool run(int dimension, int n, bool debug = false)
      cout << bf_duration.count() << " seconds elapsed" << endl;
      cout << bf_counter << " euclidean distance comparisons" << endl;
 
-     // if (dimension == 3 && !debug)
-     // {
-     //      auto [p1, p2, dist] = dnc_result;
-     //      visualize(points1, p1, p2);
-     // }
+     if (dimension == 3 && !debug)
+     {
+          auto [pairs_list, dist] = dnc_result;
+          write_to_file(pairs_list, "../log/pairs_list.txt");
+     }
 
      auto [dncres, dncdist] = dnc_result;
      auto [bfres, bfdist] = bf_result;
@@ -119,9 +125,9 @@ int main()
           int dimensions, num_of_points;
 
           std::cout << "Dimensions: ";
-          std::cin >> dimensions;
+          dimensions = input_dimensions();
           std::cout << "Number of points: ";
-          std::cin >> num_of_points;
+          num_of_points = input_num_of_points();
 
           run(dimensions, num_of_points);
      }
