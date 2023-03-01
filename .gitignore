@@ -29,7 +29,6 @@ build
 *.lib
 
 # Executables
-*.exe
 *.out
 *.app
 

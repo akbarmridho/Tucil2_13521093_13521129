@@ -63,6 +63,9 @@ This program was developed on WSL2 Ubuntu 22.04.
 - Matplotlib
 
 ### How to Compile Program
+
+#### In Ubuntu
+
 1. Clone this repository
 
 ```
@@ -83,6 +86,30 @@ cd build
 4. Make executable file
 ```
 make
+```
+
+#### In Windows
+
+1. Clone this repository
+
+```
+git clone git@github.com:akbarmridho/Tucil2_13521093_13521129.git
+```
+
+2. Run cmake build
+
+```
+cmake -B build . -G "MinGW Makefiles"
+```
+
+3. Go to bin directory
+```
+cd build
+```
+
+4. Make executable file
+```
+mingw32-make
 ```
 
 ### How to Run Program
