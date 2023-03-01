@@ -1,8 +1,6 @@
 # Prerequisites
 __pycache__
 *.d
-bin
-log
 
 # Compiled Object files
 *.slo

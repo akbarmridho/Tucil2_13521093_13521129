@@ -42,7 +42,7 @@ bool run(int dimension, int n, bool debug = false)
 
      duration<double> dnc_duration = duration_cast<duration<double>>(stop_dnc - start_dnc);
      cout << dnc_duration.count() << " seconds elapsed" << endl;
-     cout << dnc_counter << " euclediean comparisons" << endl;
+     cout << dnc_counter << " euclidean distance comparisons" << endl;
 
      bf_counter = 0;
 
@@ -124,9 +124,7 @@ int main()
      {
           int dimensions, num_of_points;
 
-          std::cout << "Dimensions: ";
           dimensions = input_dimensions();
-          std::cout << "Number of points: ";
           num_of_points = input_num_of_points();
 
           run(dimensions, num_of_points);

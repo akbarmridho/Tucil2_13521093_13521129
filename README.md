@@ -1,7 +1,7 @@
 # Tucil2_13521093_13521129
 
 ## General Information
-
+A program to solve closest pair of points problem in multidimensional space using divide and conquer algorithm design. Program will show the coordinates of the closest pair of points and visualize the result in 3D scatter plot (only if it's in three dimensional space).
 
 ## Contributors
 Created by Group 77:
@@ -27,7 +27,7 @@ Created by Group 77:
 │   └── settings.json
 |
 ├── bin
-│   └── execnya apah
+│   └── Tucil2_13521093_13521129
 │       
 ├── doc
 │   └── Tucil2_13521093_13521129.pdf
@@ -40,6 +40,8 @@ Created by Group 77:
     |   dncsolver.h
     |   euclidean.cpp
     |   euclidean.h
+    |   io.cpp
+    |   io.h
     |   generator.cpp
     |   generator.h
     |   main.cpp
@@ -73,10 +75,20 @@ git clone git@github.com:akbarmridho/Tucil2_13521093_13521129.git
 cmake -B bin .
 ```
 
-3. Run executable file
+3. Go to bin directory
+```
+cd bin
+```
+
+4. Make executable file
+```
+make
+```
+
+5. Run executable file
 
 ```
-./build/Tucil2_13521093_13521129
+./Tucil2_13521093_13521129
 ```
 
 ### How To Visualize Result in 3D Scatter Plot

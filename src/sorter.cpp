@@ -6,7 +6,7 @@ int partition(points_t &points, int depth, int low, int high)
     int left_ptr, right_ptr;
     point_t temp;
 
-    pivot_depth_val = points[(low + high) / 2][depth];
+    pivot_depth_val = points[(low + high) / 2][depth]; // pivot at middle
     left_ptr = low;
     right_ptr = high;
 

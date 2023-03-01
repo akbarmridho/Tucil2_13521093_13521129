@@ -1,9 +1,9 @@
 import numpy as np
 from numpy.typing import NDArray
-from os.path import exists
 import matplotlib.pyplot as plt
 import itertools
 
+# read log files
 def read_file(path):
     f = open(path, "r")
     points = f.readlines()
@@ -15,6 +15,7 @@ def read_file(path):
     
     return points
 
+# visualization in 3D scatter plot
 def visualize(points: NDArray, pairs_list: NDArray):
     for point in pairs_list:
         new_point = points
@@ -29,6 +30,7 @@ def visualize(points: NDArray, pairs_list: NDArray):
 
     ax.scatter(points[:, 0], points[:, 1], points[:, 2], marker='o')
     
+    # change color for each pair of closest points
     colors = itertools.cycle(["tab:orange", "tab:green", "tab:red", "tab:purple", "tab:brown", "tab:pink", "tab:gray", "tab:olive", "tab:cyan", "r", "g", "b", "c", "m", "y", "k"])
     for i in range(0, len(pairs_list), 2):
         pairs_color = next(colors)
@@ -42,11 +44,9 @@ def visualize(points: NDArray, pairs_list: NDArray):
     ax.set_zlabel('Z')
 
     plt.show()
-    
+
+# main program for visualization
 if __name__ == "__main__":
-    if (exists("../log/points.txt") and exists("../txt/pairs_list.txt")):
-        points = read_file("../log/points.txt")
-        pairs_list = read_file("../log/pairs_list.txt")
-        visualize(points, pairs_list)
-    else:
-        print(".txt log not found.")
+    points = read_file("../log/points.txt")
+    pairs_list = read_file("../log/pairs_list.txt")
+    visualize(points, pairs_list)

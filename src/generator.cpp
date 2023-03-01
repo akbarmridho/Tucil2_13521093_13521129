@@ -58,7 +58,7 @@ void print_result(const closest_pair_t& closest_pair)
     cout << "Closest Pairs: " << endl;
 
     for (int i = 0; i < pairs_list.size(); i++){
-        cout << "------- " << i + 1 << " -------" << endl;
+        cout << "-------------- " << i + 1 << " --------------" << endl;
         print_pair(pairs_list[i]);
     }
 

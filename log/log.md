@@ -1,0 +1,1 @@
+This directory is a place to store .txt log files (points and pairs_list) for 3D visualization needs
