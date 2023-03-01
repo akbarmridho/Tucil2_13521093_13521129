@@ -62,7 +62,7 @@ This program was developed on WSL2 Ubuntu 22.04.
 - Python 3
 - Matplotlib
 
-### How to Compile and Run Program
+### How to Compile Program
 1. Clone this repository
 
 ```
@@ -72,12 +72,12 @@ git clone git@github.com:akbarmridho/Tucil2_13521093_13521129.git
 2. Run cmake build
 
 ```
-cmake -B bin .
+cmake -B build .
 ```
 
 3. Go to bin directory
 ```
-cd bin
+cd build
 ```
 
 4. Make executable file
@@ -85,10 +85,22 @@ cd bin
 make
 ```
 
-5. Run executable file
+### How to Run Program
+
+We provide two version of binary files. The first one was compiled in Ubuntu 22.04 with GNU G++ compiler and the second one was compiled in Windows 11 with MinGW compiler.
+
+In folder bin, run the executable file.
 
 ```
+cd bin
 ./Tucil2_13521093_13521129
+```
+
+or
+
+```
+cd bin
+.\Tucil2_13521093_13521129.exe
 ```
 
 ### How To Visualize Result in 3D Scatter Plot

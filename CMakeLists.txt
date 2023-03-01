@@ -18,3 +18,7 @@ add_executable(Tucil2_13521093_13521129
     src/io.h
     src/sorter.cpp
     src/sorter.h)
+
+set_target_properties(Tucil2_13521093_13521129
+    PROPERTIES 
+    RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_CURRENT_BINARY_DIR}/../bin)
